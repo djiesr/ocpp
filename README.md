@@ -9,24 +9,11 @@ This is a temporary version awaiting the necessary fixes from United Chargers fo
 
 From [lbbrhzn/ocpp](https://github.com/lbbrhzn/ocpp), patched for **Grizzl-E Smart** charger.
 
-Tested with the firmware: **GWM-07.013-03_GCW-10.18-05.7**
+Tested with the firmware: **GWM-07.027-03_GCW-10.22-05.7**
 
-- No special instruction
+Add the integration with the default instalation.
 
-Tested with the firmware: 
-**GWM-07.020-03_GCW-10.18-05.7**, 
-**GWM-07.023-03_GCW-10.19-05.7**, 
-**GWM-07.025-03_GCW-10.19-05.7** and
-**GWM-07.026-03_GCW-10.20-05.7**.
-
-- **Before install the integration**, copy de "ocpp" folder of this [OPCC package](https://github.com/mobilityhouse/ocpp) in your "HA Config"/deps/lib/python3.11/site-packages/
-- Than, you will modify BootNotification.json in folder "HA Config"/deps/lib/python3.11/site-packages/ocpp/v16/schemas/ at line 12 replace "maxLength": 20 by "maxLength": 30
-- After you can do the instalation the integration.
-- When you will add the intégration, check the box of "ignore the validation of the OCPP scheme" like:
-<img width="607" alt="image" src="https://github.com/djiesr/ocpp/assets/31359825/cacdfdbf-46e3-47e5-8ca2-9a8294474124">
-
-(In french sorry)
-- And, finish the instalation.
+From your charger, set the server: the ws://homeassistant.local:9000/
 
 All other information is in the documentation you can found here [home-assistant-ocpp.readthedocs.io](https://home-assistant-ocpp.readthedocs.io)
 
