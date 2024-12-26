@@ -7,7 +7,7 @@
 
 This is a temporary version awaiting the necessary fixes from United Chargers for the compatibility of the Grizzl-E Smart charger with the OCPP standards used in the original version created by lbbrhzn.
 
-From [lbbrhzn/ocpp](https://github.com/lbbrhzn/ocpp), patched for **Grizzl-E Smart** charger.
+From [lbbrhzn/ocpp](https://github.com/lbbrhzn/ocpp) V0.6.3, patched for **Grizzl-E Smart** charger.
 
 Tested with the firmware: **GWM-07.027-03_GCW-10.22-05.7**
 
