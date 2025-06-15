@@ -2,6 +2,7 @@
 
 from datetime import datetime, timedelta, UTC
 import logging
+import asyncio
 
 import time
 
@@ -110,11 +111,15 @@ class ChargePoint(cp):
 
             for measurand in all_measurands.split(","):
                 _LOGGER.debug(f"'{self.id}' trying measurand: '{measurand}'")
-                req = call.ChangeConfiguration(key=key, value=measurand)
-                resp = await self.call(req)
-                if resp.status in cfg_ok:
-                    _LOGGER.debug(f"'{self.id}' adding measurand: '{measurand}'")
-                    accepted_measurands.append(measurand)
+                try:
+                    req = call.ChangeConfiguration(key=key, value=measurand)
+                    resp = await self.call(req)
+                    if resp.status in cfg_ok:
+                        _LOGGER.debug(f"'{self.id}' adding measurand: '{measurand}'")
+                        accepted_measurands.append(measurand)
+                except asyncio.TimeoutError:
+                    _LOGGER.warning(f"Timeout while configuring measurand {measurand} for {self.id}")
+                    continue
 
             accepted_measurands = ",".join(accepted_measurands)
         else:
@@ -127,17 +132,27 @@ class ChargePoint(cp):
             # as done when calling self.configure, the server avoids charger reboot.
             # Corresponding issue: https://github.com/lbbrhzn/ocpp/issues/1275
             if len(accepted_measurands) > 0:
-                req = call.ChangeConfiguration(key=key, value=accepted_measurands)
-                resp = await self.call(req)
-                _LOGGER.debug(
-                    f"'{self.id}' measurands set manually to {accepted_measurands}"
-                )
+                try:
+                    req = call.ChangeConfiguration(key=key, value=accepted_measurands)
+                    resp = await self.call(req)
+                    _LOGGER.debug(
+                        f"'{self.id}' measurands set manually to {accepted_measurands}"
+                    )
+                except asyncio.TimeoutError:
+                    _LOGGER.warning(f"Timeout while setting measurands for {self.id}")
 
-        chgr_measurands = await self.get_configuration(key)
+        try:
+            chgr_measurands = await self.get_configuration(key)
+        except asyncio.TimeoutError:
+            _LOGGER.warning(f"Timeout while getting configuration for {self.id}")
+            chgr_measurands = ""
 
         if len(accepted_measurands) > 0:
             _LOGGER.debug(f"'{self.id}' allowed measurands: '{accepted_measurands}'")
-            await self.configure(key, accepted_measurands)
+            try:
+                await self.configure(key, accepted_measurands)
+            except asyncio.TimeoutError:
+                _LOGGER.warning(f"Timeout while configuring measurands for {self.id}")
         else:
             _LOGGER.debug(f"'{self.id}' measurands not configurable by integration")
             _LOGGER.debug(f"'{self.id}' allowed measurands: '{chgr_measurands}'")
