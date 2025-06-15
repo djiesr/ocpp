@@ -36,17 +36,17 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         with:
           name: ocpp
-          path: ${{ github.workspace }}/custom_components/ocpp
+          path: ${{ github.workspace }}/custom_components/ocpp_grizzle/
 
       # Pack the dir as a zip and upload to the release
       - name: 📦 ZIP Dir
         if: ${{ github.event_name == 'release' }}
         run: |
-          cd ${{ github.workspace }}/custom_components/ocpp
+          cd ${{ github.workspace }}/custom_components/ocpp_grizzle/
           zip ocpp.zip -r ./
 
       - name: 📤 Upload zip to release
         uses: softprops/action-gh-release@v1
         if: ${{ github.event_name == 'release' }}
         with:
-          files: ${{ github.workspace }}/custom_components/ocpp/ocpp.zip
+          files: ${{ github.workspace }}/custom_components/ocpp_grizzle/ocpp.zip
