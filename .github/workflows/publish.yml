@@ -43,10 +43,10 @@ jobs:
         if: ${{ github.event_name == 'release' }}
         run: |
           cd ${{ github.workspace }}/custom_components/ocpp_grizzle/
-          zip ocpp.zip -r ./
+          zip ocpp_grizzle.zip -r ./
 
       - name: 📤 Upload zip to release
         uses: softprops/action-gh-release@v1
         if: ${{ github.event_name == 'release' }}
         with:
-          files: ${{ github.workspace }}/custom_components/ocpp_grizzle/ocpp.zip
+          files: ${{ github.workspace }}/custom_components/ocpp_grizzle/ocpp_grizzle.zip
