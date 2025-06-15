@@ -101,6 +101,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         hass.data.setdefault(DOMAIN, {})
         _LOGGER.info(entry.data)
 
+    # Check if this entry is already set up
+    if entry.entry_id in hass.data[DOMAIN]:
+        _LOGGER.warning(f"Entry {entry.entry_id} is already set up")
+        return True
+
     central_sys = await CentralSystem.create(hass, entry)
 
     dr = device_registry.async_get(hass)
