@@ -1,0 +1,85 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Configuration du Système Central OCPP",
+                "description": "Si vous avez besoin d'aide avec la configuration, consultez : https://github.com/lbbrhzn/ocpp",
+                "data": {
+                    "host": "Adresse de l'hôte du système central",
+                    "port": "Numéro de port du système central",
+                    "ssl": "Connexion sécurisée",
+                    "ssl_certfile_path": "Chemin vers le certificat SSL ou (Aucun)",
+                    "ssl_keyfile_path": "Chemin vers la clé SSL ou (Aucun)",
+                    "csid": "Identité du système central",
+                    "websocket_close_timeout": "Délai de fermeture WebSocket (secondes)",
+                    "websocket_ping_tries": "Nombre de tentatives de connexion WebSocket avant fermeture",
+                    "websocket_ping_interval": "Intervalle de ping WebSocket (secondes)",
+                    "websocket_ping_timeout": "Délai d'expiration du ping WebSocket (secondes)"
+                }
+            },
+            "cp_user": {
+                "title": "Configuration du Chargeur OCPP",
+                "description": "Si vous avez besoin d'aide avec la configuration, consultez : https://github.com/lbbrhzn/ocpp",
+                "data": {
+                    "cpid": "Identité du point de charge",
+                    "max_current": "Courant de charge maximum",
+                    "meter_interval": "Intervalle d'échantillonnage de charge (secondes)",
+                    "monitored_variables_autoconfig": "Détection automatique des mesurandes OCPP",
+                    "idle_interval": "Intervalle d'échantillonnage en veille du chargeur (secondes)",
+                    "skip_schema_validation": "Ignorer la validation du schéma OCPP",
+                    "force_smart_charging": "Forcer le profil de fonctionnalité de charge intelligente"
+                }
+            },
+            "measurands": {
+                "title": "Mesurandes OCPP",
+                "description": "Sélectionnez quelle(s) mesurande(s) doivent être utilisées dans Home Assistant.",
+                "data": {
+                    "Current.Export": "Current.Export : Flux de courant instantané depuis le VE",
+                    "Current.Import": "Current.Import : Flux de courant instantané vers le VE",
+                    "Current.Offered": "Current.Offered : Courant maximum offert au VE",
+                    "Energy.Active.Export.Register": "Energy.Active.Export.Register : Énergie active exportée vers le réseau",
+                    "Energy.Active.Import.Register": "Energy.Active.Import.Register : Énergie active importée du réseau",
+                    "Energy.Reactive.Export.Register": "Energy.Reactive.Export.Register : Énergie réactive exportée vers le réseau",
+                    "Energy.Reactive.Import.Register": "Energy.Reactive.Import.Register : Énergie réactive importée du réseau",
+                    "Energy.Active.Export.Interval": "Energy.Active.Export.Interval : Énergie active exportée vers le réseau durant le dernier intervalle",
+                    "Energy.Active.Import.Interval": "Energy.Active.Import.Interval : Énergie active importée du réseau durant le dernier intervalle",
+                    "Energy.Reactive.Export.Interval": "Energy.Reactive.Export.Interval : Énergie réactive exportée vers le réseau durant le dernier intervalle",
+                    "Energy.Reactive.Import.Interval": "Energy.Reactive.Import.Interval : Énergie réactive importée du réseau durant le dernier intervalle",
+                    "Frequency": "Frequency : Fréquence de la ligne électrique",
+                    "Power.Active.Export": "Power.Active.Export : Puissance active instantanée exportée par le VE",
+                    "Power.Active.Import": "Power.Active.Import : Puissance active instantanée importée par le VE",
+                    "Power.Factor": "Power.Factor : Facteur de puissance instantané du flux d'énergie total",
+                    "Power.Offered": "Power.Offered : Puissance maximum offerte au VE",
+                    "Power.Reactive.Export": "Power.Reactive.Export : Puissance réactive instantanée exportée par le VE",
+                    "Power.Reactive.Import": "Power.Reactive.Import : Puissance réactive instantanée importée par le VE",
+                    "RPM": "RPM : Vitesse du ventilateur en tours par minute",
+                    "SoC": "SoC : État de charge du VE en pourcentage",
+                    "Temperature": "Temperature : Lecture de température à l'intérieur du point de charge",
+                    "Voltage": "Voltage : Tension d'alimentation CA RMS instantanée"
+                }
+            }
+        },
+        "error": {
+            "auth": "Nom d'utilisateur/Mot de passe incorrect.",
+            "no_measurands_selected": "Aucune mesurande sélectionnée : veuillez en sélectionner au moins une"
+        },
+        "abort": {
+            "single_instance_allowed": "Une seule instance est autorisée",
+            "reauth_successful": "Nouveau chargeur configuré"
+        }
+    },
+    "exceptions": {
+        "invalid_ocpp_key": {
+            "message": "Clé OCPP invalide"
+        },
+        "ocpp_call_error": {
+            "message": "Échec de l'appel OCPP : {message}"
+        },
+        "get_variables_error": {
+            "message": "Échec de récupération de la variable : {message}"
+        },
+        "set_variables_error": {
+            "message": "Échec de définition de la variable : {message}"
+        }
+    }
+}
