@@ -1,4 +1,6 @@
 {
+    "domain": "ocpp",
+    "name": "Open Charge Point Protocol (OCPP) for Grizzl-e",
     "after_dependencies": [
         "persistent_notification"
     ],
@@ -8,10 +10,8 @@
     ],
     "config_flow": true,
     "documentation": "https://github.com/lbbrhzn/ocpp/blob/main/README.md",
-    "domain": "ocpp",
     "iot_class": "local_push",
     "issue_tracker": "https://github.com/lbbrhzn/ocpp/issues",
-    "name": "Open Charge Point Protocol (OCPP) for Grizzl-e",
     "requirements": [
         "ocpp>=2.0.0",
         "websockets>=14.1"
