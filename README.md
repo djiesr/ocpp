@@ -1,3 +1,27 @@
+## ⚠️ Important — Do NOT Update Your Grizzl-E Charger
+
+> **Warning**  
+> After the latest firmware update, your Grizzl-E charger will **no longer work** with your OCPP server in Home Assistant.  
+
+### Current Situation
+- As of **September 10, 2025**, United Chargers announced that it is temporarily not possible to connect their charger to a custom OCPP server other than their own.  
+- This issue has been ongoing for over a month and is expected to last for about another month.  
+
+### Error Example
+The intercepted error looks like this:
+
+
+In short:  
+`{"configurationKey":],"unknownKey":["MeterValuesSampledData"]}` is invalid → the charger disconnects from the OCPP server.  
+
+### Fix
+This GitHub patch simply intercepts that malformed message and ignores it, allowing the charger to keep working with Home Assistant.  
+
+---
+
+✅ **As long as you do not update the firmware, your charger will continue to work correctly with Home Assistant.**
+
+
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 [![codecov](https://codecov.io/gh/lbbrhzn/ocpp/branch/main/graph/badge.svg?token=3FRJIF5KRW)](https://codecov.io/gh/lbbrhzn/ocpp)
 [![Documentation Status](https://readthedocs.org/projects/home-assistant-ocpp/badge/?version=latest)](https://home-assistant-ocpp.readthedocs.io/en/latest/?badge=latest)
